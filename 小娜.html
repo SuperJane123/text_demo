@@ -68,7 +68,20 @@
             var time = year + '-' + month + '-' + day + ' ' + hours + ':' + min +':' + sec;
             alert (time);
             break;
+
+            //猜猜是哪个明星出现功能部分开始，这个要创建数组，数组是要随机的，随机属性值是math.random;
+            case '3' :
+            case '明星': 
+            var star = ['刘德华', '黎明', '郭富城', '张学友'];
+            // 要实现索引随机，需要用到math.random，math.random是小数点，需要用math.floor 来取整数
+            var r = Math.floor(Math.random() * star.length);
+            alert (star [r]);
+            break;
+            default :
+            alert('主人，小天使bb执行不了你的外星语，请更新你的语言');
+        
         }
+        
     }
     
 
