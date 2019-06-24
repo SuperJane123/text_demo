@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+     /*小娜要实现的功能
+     1.窗口循环
+     2.计算总和
+     3.获取时间
+     4.猜猜出现的是哪个明星*/
+
+    //  窗口循坏用while的循环，当条件判断为true的时候，一直循环，然后输入q退出对话框
+    // \n是可以把字符串换行的功能
+
+    while(true) {
+
+        var msg = prompt ('你好，很高兴认识您，我是您的小天使bb👼\n' +
+        '请输入《编号》或者《关键词》选择功能，输入q则退出对话框\n' +
+        '1.计算总和\n'+ 
+        '2.获取时间\n'+
+        '3.猜猜出现的是哪个明星');
+        // 现在要实现如果输入q的时候的页面框,记得客户输入的都是字符串
+        if (msg === 'q') {
+            alert ('主人竟然抛弃我了，小天使bb不开心😔，呜呜呜～～～');
+            break; 
+        }
+    }
+    
+
+
+</script>
+</html>
