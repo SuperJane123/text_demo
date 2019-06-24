@@ -23,13 +23,51 @@
 
         var msg = prompt ('你好，很高兴认识您，我是您的小天使bb👼\n' +
         '请输入《编号》或者《关键词》选择功能，输入q则退出对话框\n' +
-        '1.计算总和\n'+ 
-        '2.获取时间\n'+
-        '3.猜猜出现的是哪个明星');
+        '1.计算《总和》\n'+ 
+        '2.获取《时间》\n'+
+        '3.猜猜出现的是哪个《明星》');
         // 现在要实现如果输入q的时候的页面框,记得客户输入的都是字符串
         if (msg === 'q') {
             alert ('主人竟然抛弃我了，小天使bb不开心😔，呜呜呜～～～');
             break; 
+        }
+
+        // 计算总和功能开始，运用数组，使用遍历法来做总和，因为编号都是固定的，所以用可以用switch固定循环
+        switch (msg) {
+            // 当输入以下值时，弹出输入对话框
+            case '1' :
+            case '总和' :
+            var numbers = prompt ('请输入一组数字并用英文逗号隔开，例如：1，2，3，4');
+            // 因为客户输入的是字符串，所以要用.split来转换成数组
+            var arr = numbers.split(',');
+            // 开始用遍历法来计算数组之间的和,记住遍历求和就是用for来做的
+            var sum = 0;
+            for (var i = 0; i < arr.length; i++ ) {
+                // 循环体是
+                sum += parseInt(arr[i]);
+            }
+            alert ('计算的总和是：' + sum);
+            break;
+            // 获取时间功能开始，要调用日期函数
+            case '2':
+            case '时间':
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth()+ 1;
+            var day = date.getDate();
+            var hours = date.getHours();
+            var min = date.getMinutes();
+            var sec = date.getSeconds();
+            
+            // 月份、时间、天数 描述小于10的时候，给他在前面加个0；因为结构简单， 可以使用三元式表达
+            month < 10 ? '0' + month : month;
+            day < 10 ? '0' + day : day;
+            hours < 10 ? '0' + day : hours;
+            min < 10 ? '0' + day : min;
+            sec < 0 ? '0' + sec : sec;
+            var time = year + '-' + month + '-' + day + ' ' + hours + ':' + min +':' + sec;
+            alert (time);
+            break;
         }
     }
     
