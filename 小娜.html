@@ -1,90 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-    
+
 </body>
 <script>
-     /*小娜要实现的功能
-     1.窗口循环
-     2.计算总和
-     3.获取时间
-     4.猜猜出现的是哪个明星*/
+    /*小娜要实现的功能
+    1.窗口循环
+    2.计算总和
+    3.获取时间
+    4.猜猜出现的是哪个明星*/
 
     //  窗口循坏用while的循环，当条件判断为true的时候，一直循环，然后输入q退出对话框
     // \n是可以把字符串换行的功能
 
-    while(true) {
+    // 第一个封装求数组的和
+     function getSumformArray(arr) {
+        //  用遍历法求数组的和
+        var sum = 0;
+        for (var i = 0; i < arr.length; i++) {
+            sum += parseFloat(arr[i]);
+        }
+        return sum;
+     }
 
-        var msg = prompt ('你好，很高兴认识您，我是您的小天使bb👼\n' +
-        '请输入《编号》或者《关键词》选择功能，输入q则退出对话框\n' +
-        '1.计算《总和》\n'+ 
-        '2.获取《时间》\n'+
-        '3.猜猜出现的是哪个《明星》');
+    //  第二个封装输入数字后算出的和
+     function input() {
+         var numbers = prompt('请输入数字并用逗号隔开');
+        //  用逗号把数字隔开
+        var arr = numbers.split(',');
+        var sum = getSumformArray(arr);
+        return sum;
+     }
+
+
+    //  第三个封装判断月份后后年的时间单位小于10的时候，补0
+
+    function patchZero (number) {
+       number < 10 ? '0' + number : number;
+       return number;
+    };
+
+    // 第四个封装时间，获取固定的时间
+    function getDate () {
+        var date = new Date();
+        var y = date.getFullYear();
+        var M = date.getMonth() + 1;
+        var d = date.getDate();
+        var h = date.getHours();
+        var m = date.getMinutes();
+        var s = date.getSeconds();
+        y = patchZero(y);
+        M = patchZero(M);
+        d = patchZero(d);
+        h = patchZero(h);
+        m = patchZero(m);
+        s = patchZero(s);
+        var time = y + '-' + M+ '-' + d + ' ' + h + ':' + m + ':' + s;
+        return time;
+    }
+
+    // 第五个封装的函数是讲笑话功能
+    function Sayjoke () {
+        var joke = ['笑话1','笑话2','笑话3','笑话4','笑话5',];
+        // 求索引的随机数字
+        var r = Math.floor(Math.random() * joke.length);
+        alert(joke[r]);
+        return joke[r];
+
+    }
+
+
+    while (true) {
+        var msg = prompt('你好，很高兴认识您，我是您的小天使bb👼\n' +
+            '请输入《编号》或者《关键词》选择功能，输入q则退出对话框\n' +
+            '1.计算《总和》\n' +
+            '2.获取《时间》\n' +
+            '3.讲个笑话');
         // 现在要实现如果输入q的时候的页面框,记得客户输入的都是字符串
         if (msg === 'q') {
-            alert ('主人竟然抛弃我了，小天使bb不开心😔，呜呜呜～～～');
-            break; 
+            alert('主人竟然抛弃我了，小天使bb不开心😔，呜呜呜～～～');
+            break;
         }
 
         // 计算总和功能开始，运用数组，使用遍历法来做总和，因为编号都是固定的，所以用可以用switch固定循环
         switch (msg) {
             // 当输入以下值时，弹出输入对话框
-            case '1' :
-            case '总和' :
-            var numbers = prompt ('请输入一组数字并用英文逗号隔开，例如：1，2，3，4');
-            // 因为客户输入的是字符串，所以要用.split来转换成数组
-            var arr = numbers.split(',');
-            // 开始用遍历法来计算数组之间的和,记住遍历求和就是用for来做的
-            var sum = 0;
-            for (var i = 0; i < arr.length; i++ ) {
-                // 循环体是
-                sum += parseInt(arr[i]);
-            }
-            alert ('计算的总和是：' + sum);
-            break;
+            case '1':
+            case '总和':
+                // var numbers = prompt('请输入一组数字并用英文逗号隔开，例如：1，2，3，4');
+                // 因为客户输入的是字符串，所以要用.split来转换成数组
+                // var arr = numbers.split(',');
+                // 开始用遍历法来计算数组之间的和,记住遍历求和就是用for来做的
+                // var sum = 0;
+                // for (var i = 0; i < arr.length; i++) {
+                //     // 循环体是
+                //     sum += parseInt(arr[i]);
+                // }
+                // var sum = getSum(arr)
+                var sum = input();
+                alert('计算的总和是：' + sum);
+                break;
             // 获取时间功能开始，要调用日期函数
             case '2':
             case '时间':
-            var date = new Date();
-            var year = date.getFullYear();
-            var month = date.getMonth()+ 1;
-            var day = date.getDate();
-            var hours = date.getHours();
-            var min = date.getMinutes();
-            var sec = date.getSeconds();
-            
-            // 月份、时间、天数 描述小于10的时候，给他在前面加个0；因为结构简单， 可以使用三元式表达
-            month < 10 ? '0' + month : month;
-            day < 10 ? '0' + day : day;
-            hours < 10 ? '0' + day : hours;
-            min < 10 ? '0' + day : min;
-            sec < 0 ? '0' + sec : sec;
-            var time = year + '-' + month + '-' + day + ' ' + hours + ':' + min +':' + sec;
-            alert (time);
-            break;
+                // var date = new Date();
+                // var year = date.getFullYear();
+                // var month = date.getMonth() + 1;
+                // var day = date.getDate();
+                // var hours = date.getHours();
+                // var min = date.getMinutes();
+                // var sec = date.getSeconds();
+
+                // 月份、时间、天数 描述小于10的时候，给他在前面加个0；因为结构简单， 可以使用三元式表达
+                // month < 10 ? '0' + month : month;
+                // day < 10 ? '0' + day : day;
+                // hours < 10 ? '0' + day : hours;
+                // min < 10 ? '0' + day : min;
+                // sec < 0 ? '0' + sec : sec;
+                // month = patchZero(month);
+                // day = patchZero(day);
+                // hours = patchZero(hours);
+                // min = patchZero(min);
+                // sec = patchZero(sec);
+
+                // var time = year + '-' + month + '-' + day + ' ' + hours + ':' + min + ':' + sec;
+                var time = getDate();
+                alert(time);
+                break;
 
             //猜猜是哪个明星出现功能部分开始，这个要创建数组，数组是要随机的，随机属性值是math.random;
-            case '3' :
-            case '明星': 
-            var star = ['刘德华', '黎明', '郭富城', '张学友'];
-            // 要实现索引随机，需要用到math.random，math.random是小数点，需要用math.floor 来取整数
-            var r = Math.floor(Math.random() * star.length);
-            alert (star [r]);
-            break;
-            default :
-            alert('主人，小天使bb执行不了你的外星语，请更新你的语言');
-        
+            case '3':
+            case '明星':
+                // var star = ['刘德华', '黎明', '郭富城', '张学友'];
+                // 要实现索引随机，需要用到math.random，math.random是小数点，需要用math.floor 来取整数
+                // var r = Math.floor(Math.random() * star.length);
+                // alert(star[r]);
+                 var joke = Sayjoke ();
+                break;
+            default:
+                alert('主人，小天使bb执行不了你的外星语，请更新你的语言');
+
         }
-        
+
     }
-    
+
 
 
 </script>
+
 </html>
